@@ -9,3 +9,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.main-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: center;
+  justify-content: center;
+  
+
+}
+
+
+
+/* @media (min-width: 600px) {
+
+  .main-container {
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
+    justify-content: space-around;
+  }
+}
+
+@media (min-width: 900px) {
+
+  .main-container {
+    display: grid;
+    grid-template-columns:repeat(3, 1fr);
+    justify-content: space-around;
+  } */
+

@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    height: 100px;
+    margin-top: 60px;
+    padding: 18px;
+    font-size: 12px;
+    background: black;
+    justify-self: center;
+    border-radius: 10px;
+    color: white;
+}
+
+.types{
+    color: white;
+}
+

@@ -1,9 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
+import PokemonListPage from "./pages/PokemonListPage";
 
 const API = "https://pokeapi.co/api/v2/pokemon"
 
+export const PokeContext = createContext(null)
+
 function App() {
-  const [pokemonList, setpokemonList] = useState([])
+  const [pokemonApp, setpokemonApp] = useState({
+    pokemonList:[],
+    pokemonToSearch:""
+  })
+
+  
+  const updatePokemonToSearch = (pokemon) => {
+    setpokemonApp((currentPokemon) => ({
+      ...currentPokemon,
+      pokemonToSearch: pokemon
+    }))
+  }
 
   useEffect(() => {
     const pokeArray = []
@@ -13,17 +27,20 @@ function App() {
         data.results.forEach(pokemon => {
             fetch(pokemon.url)
             .then(response => response.json())
-            .then(pokemonData => pokeArray.push(pokemonData));
-            setpokemonList(pokeArray)
+            .then(pokemonData => pokeArray.push(pokemonData))
+            .then(()=>{
+              setpokemonApp({
+                pokemonList:pokeArray
+              })
+            })
         });
     })
   },[])
   
-  console.log(pokemonList)
   return (
-    <div className="App">
-      Hola
-    </div>
+    <PokeContext.Provider value={{pokemonApp, updatePokemonToSearch}}>
+      <PokemonListPage/>
+    </PokeContext.Provider>
   );
 }
 
