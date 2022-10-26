@@ -5,13 +5,12 @@ import '../navbar/navbar.css'
 
 function Navbar() {
 
-  const {updatePokemonToSearch, updatePokemonSelected} = useContext(PokeContext)
+  const {updatePokemonSelected} = useContext(PokeContext)
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const {pokemon} = ev.target.elements
     const pokemonValue = pokemon.value
-    updatePokemonToSearch(pokemonValue)
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonValue}`)
     .then(response => response.json())
     .then(data => updatePokemonSelected(data))
