@@ -1,0 +1,39 @@
+.pokemonDetails-container{
+    
+    justify-content: center;
+    text-align: center;
+    line-height: 5px;
+    padding: 20px;
+}
+
+.images{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+}
+
+.pokemonDetails-container img {
+    background: black;
+    border-radius: 20px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.back-button{
+    width: 100px;
+    
+    border-radius: 20px;
+    background: black;
+    
+}
+
+@media (min-width: 600px) {
+  .images {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}

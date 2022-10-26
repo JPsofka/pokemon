@@ -1,8 +1,9 @@
 .container{
     display: flex;
     flex-direction: row;
-    width: 200px;
-    height: 100px;
+    justify-content: space-evenly;
+    width: 220px;
+    height: 110px;
     margin-top: 60px;
     padding: 18px;
     font-size: 12px;
@@ -12,7 +13,26 @@
     color: white;
 }
 
+img{
+    width: 100px;
+    height: 100px;
+}
+
 .types{
     color: white;
 }
 
+.info{
+    height: 100px;
+}
+
+button{
+    align-self:flex-end;
+    right: 0;
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border-style: none;
+
+}
