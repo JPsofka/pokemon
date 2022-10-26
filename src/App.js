@@ -9,15 +9,12 @@ export const PokeContext = createContext(null)
 function App() {
   const [pokemonApp, setpokemonApp] = useState({
     pokemonList:[],
-    pokemonSelected:"",
   })
-
+  const [pokemonSelected, setpokemonSelected] = useState("")
+  const [pok, setpok] = useState({})
   const [pokemonToSearch, setpokemonToSearch] = useState("")
   const updatePokemonSelected = (pokemon) => {
-    setpokemonApp((currentPokemon) => ({
-      ...currentPokemon,
-      pokemonSelected: pokemon
-    }))
+    setpokemonSelected(pokemon)
   }
 
   const updatePokemonToSearch = (pokemon) => {
@@ -45,15 +42,18 @@ function App() {
   useEffect(() => {
     fetch(`${API}/${pokemonToSearch}`)
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => setpok(data))
+    // .then(()=>updatePokemonSelected(pok))
+    
   }, [pokemonToSearch])
-  
+  console.log("soy, ",pok)
   console.log(pokemonApp)
   return (
     <PokeContext.Provider value={{pokemonApp, updatePokemonSelected, updatePokemonToSearch}}>
-      {!pokemonApp.pokemonSelected?<PokemonListPage/> :
-        <PokemonDetails pokemonSelected = {pokemonApp.pokemonSelected} 
-        pokemoToSearch = {pokemonToSearch}/>}
+      {!pokemonSelected?<PokemonListPage/> :
+        <PokemonDetails pokemonSelected = {pokemonSelected} 
+        pok = {pok}/>}
+        
     </PokeContext.Provider>
   );
 }

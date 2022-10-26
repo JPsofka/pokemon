@@ -11,7 +11,8 @@ function PokemonDetails({pokemonSelected}) {
     return (
     <>
         <Navbar/>
-        <div className='pokemonDetails-container'>
+        {
+            <div className='pokemonDetails-container'>
             <h3>Name: {name}</h3>
             <div className="images">
                 <img src={sprites.front_default} alt="" />
@@ -29,6 +30,7 @@ function PokemonDetails({pokemonSelected}) {
             )}
             <button className='back-button' onClick={()=>updatePokemonSelected("")}>Back</button>
         </div>
+        }
     </>
   )
 }

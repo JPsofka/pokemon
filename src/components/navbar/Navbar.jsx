@@ -1,39 +1,31 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import {PokeContext} from '../../App'
 import '../navbar/navbar.css'
 
 
 function Navbar() {
 
-  const [pokemon, setpokemon] = useState("")
-  const {updatePokemonToSearch} = useContext(PokeContext)
-
-  const handleChange = (e) => {
-    setpokemon({
-      [e.target.name]: e.target.value,
-    })
-  }
+  const {updatePokemonToSearch, updatePokemonSelected} = useContext(PokeContext)
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    updatePokemonToSearch(pokemon)
+    const {pokemon} = ev.target.elements
+    const pokemonValue = pokemon.value
+    updatePokemonToSearch(pokemonValue)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonValue}`)
+    .then(response => response.json())
+    .then(data => updatePokemonSelected(data))
   }
-
-  useEffect(() => {
-    console.log(pokemon)
-  }, [pokemon])
-  
 
   return (
     <>
     <nav className='navbar'>
       <h1>PokeHub</h1>
       <div className='search'>
-        <form action="#">
+        <form onSubmit={handleSubmit}>
           <input name='pokemon' type="text" 
-            placeholder='Search Pokemon' className='search' onChange={handleChange}/>
-          <button 
-                  onClick={handleSubmit}>
+            placeholder='Search Pokemon' className='search'/>
+          <button>
           <i className='fa fa-search'></i>
           </button>
         </form>
